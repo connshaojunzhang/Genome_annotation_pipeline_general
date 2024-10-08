@@ -1,4 +1,4 @@
-# Genome_annotation_pipline_general (_de novo_ assembled genome )
+# Genome_annotation_pipeline_general (_de novo_ assembled genome )
 
 ## Data:
   * genome.fa (chromosome level assembly, e.g., after AutoHiC assisted assemble).
