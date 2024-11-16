@@ -63,8 +63,22 @@ miniprot -t${NP} -d genome.mpi genome.fa.masked
 # Search
 miniprot -It${NP} --gff genome.mpi uniprot_sprot.fasta > miniprot.gff3
 
-# Reform the miniprot.gff3 to compatible to downstream EVM pipline (this script can be found in "Scripts" in this reporosity)
-```
+# Reform the miniprot.gff3 to be compatible with downstream EVM pipline (this script can be found in ExampleScripts in this reporosity)
 python ${after_miniprot_GFF_2_EVM_alignment_GFF3} miniprot.gff3 > protein_alignments.gff3
 ```
-
+#### 3. Ab initio annotation
+* genome.fa.masked
+* proteins from OrthoDB, e.g., Metazoa.fa
+* alignments of RNA-seqs, e.g., merged.bam used in "1. Gene prediction using RNA-seq"
+```
+# BRAKER2 pipline is used (including the GeneMark-ETP and augustus training)
+braker.pl \
+     --species=Your_species \ 
+     --genome=${genomes} \
+     --prot_seq=${dir_orthoprots}/Metazoa.fa \
+     --bam=${dir_align} \
+     --AUGUSTUS_CONFIG_PATH=${out_dir}/config \
+     --gff3 \
+     --threads ${NP}
+# Rename the generated GFF3 file to be compatible with EVM pipline (${gff_rename} can be found in ExampleScripts in this reproposity)
+python ${gff_rename} braker.gff3 Your_species > geneprediction_braker.gff3
