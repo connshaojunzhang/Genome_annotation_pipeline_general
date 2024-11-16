@@ -74,10 +74,10 @@ python ${after_miniprot_GFF_2_EVM_alignment_GFF3} miniprot.gff3 > protein_alignm
 # BRAKER2 pipline is used (including the GeneMark-ETP and augustus training)
 braker.pl \
      --species=Your_species \ 
-     --genome=${genomes} \
+     --genome=genome.fa.masked \
      --prot_seq=${dir_orthoprots}/Metazoa.fa \
-     --bam=${dir_align} \
-     --AUGUSTUS_CONFIG_PATH=${out_dir}/config \
+     --bam=merged.bam \
+     --AUGUSTUS_CONFIG_PATH=${out_dir}/config \   # using the augustus config file.
      --gff3 \
      --threads ${NP}
 # Rename the generated GFF3 file to be compatible with EVM pipline (${gff_rename} can be found in ExampleScripts in this repository)
