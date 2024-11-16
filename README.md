@@ -25,5 +25,14 @@ RepeatMasker -pa 20 -a -s -gff -no_is -lib db_name-families.fa \
 EDTA.pl --genome genome.fa --species others --sensitive 1 --anno 1 --evaluate 1 --threads 24
 ```
 ## Step2: Gene prediction and annotation.
+#### 1. Gene prediction using RNA-seq
+* genome.fa.masked
+* RNA-seqs
 
+```
+# Transcripts alignment to genome using hisat2
+hisat2-build -p 24 genome.fa.masked genome_index
+
+
+```
 
