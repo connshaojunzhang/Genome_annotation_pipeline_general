@@ -53,6 +53,18 @@ blastp -query *transdecoder_dir/longest_orfs.pep -db ${swissprot} -max_target_se
 hmmscan --cpu ${NP} --domtblout pfam.domtblout ${Pfam} *transdecoder_dir/longest_orfs.pep
 TransDecoder.Predict -t transcripts.fasta --retain_pfam_hits pfam.domtblout --retain_blastp_hits blastp.outfmt6 --output_dir ${out2dir} ##this will generate "*transcripts.fasta.transdecoder.gff3"
 cdna_alignment_orf_to_genome_orf.pl transcripts.fasta.transdecoder.gff3 transcripts.gff3 transcripts.fasta > transcripts_alignments.gff3 # merge the transcripts and protein coding gene annotations
+```
+#### 2. Homology-based gene prediciton (protein alignments with splicing)
+* genome.fa.masked
+* protein database (e.g., homology proteins OrthoDB Metazoa.fa, or a more comprehesive protein database Uniprot/Swiss-prot)
+```
+# Build index for the genomes
+miniprot -t${NP} -d genome.mpi genome.fa.masked
+# Search
+miniprot -It${NP} --gff genome.mpi uniprot_sprot.fasta > miniprot.gff3
 
+# Reform the miniprot.gff3 to compatible to downstream EVM pipline (this script can be found in "Scripts" in this reporosity)
+```
+python ${after_miniprot_GFF_2_EVM_alignment_GFF3} miniprot.gff3 > protein_alignments.gff3
 ```
 
