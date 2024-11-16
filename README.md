@@ -63,7 +63,7 @@ miniprot -t${NP} -d genome.mpi genome.fa.masked
 # Search
 miniprot -It${NP} --gff genome.mpi uniprot_sprot.fasta > miniprot.gff3
 
-# Reform the miniprot.gff3 to be compatible with downstream EVM pipline (this script can be found in ExampleScripts in this reporosity)
+# Reform the miniprot.gff3 to be compatible with downstream EVM pipline (this script ${after_miniprot_GFF_2_EVM_alignment_GFF3} can be found in ExampleScripts in this repository)
 python ${after_miniprot_GFF_2_EVM_alignment_GFF3} miniprot.gff3 > protein_alignments.gff3
 ```
 #### 3. Ab initio annotation
@@ -80,5 +80,6 @@ braker.pl \
      --AUGUSTUS_CONFIG_PATH=${out_dir}/config \
      --gff3 \
      --threads ${NP}
-# Rename the generated GFF3 file to be compatible with EVM pipline (${gff_rename} can be found in ExampleScripts in this reproposity)
+# Rename the generated GFF3 file to be compatible with EVM pipline (${gff_rename} can be found in ExampleScripts in this repository)
 python ${gff_rename} braker.gff3 Your_species > geneprediction_braker.gff3
+```
