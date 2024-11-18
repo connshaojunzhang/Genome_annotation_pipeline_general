@@ -83,3 +83,15 @@ braker.pl \
 # Rename the generated GFF3 file to be compatible with EVM pipline (${gff_rename} can be found in ExampleScripts in this repository)
 python ${gff_rename} braker.gff3 Your_species > geneprediction_braker.gff3
 ```
+#### 4. Gene structure annotation
+* genome.fa.masked
+* transcripts.fasta
+
+## Step3: Merge the annotation from RNA-seq, homology-based, ab initio strategies
+#### 1. Weights of different annotations
+* genome.fa.masked
+* transcripts_alignments.gff3, protein_alignments.gff3, and geneprediction_braker.gff3
+* weight file from EVM pipline
+```
+# 
+```
