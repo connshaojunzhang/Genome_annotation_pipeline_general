@@ -16,7 +16,7 @@ RepeatModeler -database db_name -threads 20 -LTRStruct
 ```
 #### Genome masking using RepeatMasker
 ```
-RepeatMasker -pa 20 -a -s -gff -no_is -lib db_name-families.fa \
+RepeatMasker -pa 20 -a -xsmall -s -gff -no_is -lib db_name-families.fa \
              -dir outdir genome.fa
 ```
 * genome.fa.masked (see genome.fa.tbl for repeat elements statistics)
@@ -83,6 +83,8 @@ braker.pl \
 # Rename the generated GFF3 file to be compatible with EVM pipline (${gff_rename} can be found in ExampleScripts in this repository)
 python ${gff_rename} braker.gff3 Your_species > geneprediction_braker.gff3
 ```
+
+
 ## Step3: Merge the annotation from RNA-seq, homology-based, ab initio strategies
 #### 1. Weights of different annotations
 * genome.fa.masked
