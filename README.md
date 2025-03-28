@@ -40,7 +40,7 @@ hisat2 --dta \
        -S /dev/stdout 2>${out_name}_${index_name}.log | samtools view -bS - | samtools sort - > ${out_name}_${index_name}.sort.bam
 
 # Merge the alignments and extract transcripts from aligments:
-samtools merge -@ ${NP} -o merged.bam 1.bam 2.bam 3.ban ...
+samtools merge -@ ${NP} -o merged.bam 1.bam 2.bam 3.bam ...
 stringtie -p ${NP} -o stringtie.gtf merged.bam &&
 gtf_genome_to_cdna_fasta.pl stringtie.gtf genome.fa.masked > transcripts.fasta &&
 gtf_to_alignment_gff3.pl stringtie.gtf > transcripts.gff3
